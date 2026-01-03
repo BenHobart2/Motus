@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motus - City Transit</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
         rel="stylesheet">
+
+    <!-- Leaflet Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 
 <body>
@@ -53,9 +59,12 @@
                 <a href="#wallet" class="nav-item">
                     <span class="icon">💳</span> Digital Wallet
                 </a>
-                <a href="#settings" class="nav-item">
-                    <span class="icon">⚙️</span> Settings
-                </a>
+                <div class="favorites-section">
+                    <h4 class="nav-header">Favorites ❤️</h4>
+                    <div id="favorites-list">
+                        <!-- Fav items injected here -->
+                    </div>
+                </div>
             </div>
         </nav>
 
@@ -64,7 +73,7 @@
             <header class="top-bar">
                 <div class="welcome-text">
                     <h1>Good Morning, Traveler</h1>
-                    <p>Make the switch today. Save time, save the city.</p>
+                    <p>Current City: <strong>Curitiba, Brazil</strong></p>
                 </div>
                 <div class="user-pill">
                     <span class="avatar">JB</span>
@@ -73,7 +82,7 @@
 
             <div class="content-wrapper">
 
-                <!-- Section: Comparison / Motivation -->
+                <!-- Section: Dashboard & Map -->
                 <section id="dashboard" class="section">
                     <div class="hero-comparison">
                         <div class="comparison-card transit">
@@ -96,15 +105,13 @@
                         </div>
                     </div>
 
-                    <div class="live-alerts">
-                        <h3>🔔 Live Transit Updates</h3>
-                        <div class="alert-item">
-                            <span class="line-tag line-blue">Line 42</span>
-                            <span>Running 2 mins late due to city event.</span>
-                        </div>
-                        <div class="alert-item">
-                            <span class="line-tag line-green">Line 12</span>
-                            <span>New express bus added for rush hour!</span>
+                    <!-- Real Map Container -->
+                    <div class="map-container-wrapper">
+                        <h3>Live Traffic & Transit Network</h3>
+                        <div id="map"></div>
+                        <div class="map-legend">
+                            <div class="legend-item"><span class="dot green"></span> Bus Express (Flowing)</div>
+                            <div class="legend-item"><span class="dot red"></span> Live Traffic (Google Data)</div>
                         </div>
                     </div>
                 </section>
@@ -113,28 +120,36 @@
                 <section id="planner" class="section">
                     <div class="planner-card">
                         <h2>Plan Your Journey</h2>
+
+                        <!-- Mode Toggles -->
+                        <div class="mode-toggles">
+                            <button class="mode-btn active" data-mode="bus">🚌 Bus</button>
+                            <button class="mode-btn" data-mode="walk">🚶 Walk</button>
+                            <button class="mode-btn" data-mode="bike">🚲 Bike</button>
+                        </div>
+
                         <div class="route-inputs">
                             <div class="input-group">
                                 <span class="dot start"></span>
-                                <input type="text" placeholder="Current Location" value="Downtown Metro">
+                                <input type="text" placeholder="Current Location" value="Praça Tiradentes">
                             </div>
                             <div class="line-connector"></div>
                             <div class="input-group">
                                 <span class="dot end"></span>
-                                <input type="text" placeholder="Where to?">
+                                <input type="text" placeholder="Where to?" value="Jardim Botânico">
                             </div>
                             <button class="btn btn-search">Find Route</button>
                         </div>
 
-                        <!-- Mock Map Visualization -->
-                        <div class="map-placeholder">
-                            <div class="map-ui">
-                                <div class="route-line"></div>
-                                <div class="stop stop-1" data-time="10:05 AM"></div>
-                                <div class="stop stop-2" data-time="10:12 AM"></div>
-                                <div class="bus-icon">🚌</div>
+                        <div id="route-results" class="route-results" style="display: none;">
+                            <div class="result-header">
+                                <h3>Best Route</h3>
+                                <button id="btn-save-fav" class="btn-icon" title="Save to Favorites">❤️</button>
                             </div>
-                            <p class="map-caption">Interactive Map: Showing Line 12 Route</p>
+                            <div class="result-details">
+                                <p id="result-text">Taking Line 12 Express...</p>
+                                <span id="result-eta" class="eta-tag">ETA: 10:45 AM</span>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -168,6 +183,9 @@
         </main>
     </div>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script type="module" src="js/app.js"></script>
 </body>
 
