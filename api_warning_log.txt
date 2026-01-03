@@ -1,0 +1,16 @@
+  Determining projects to restore...
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+  All projects are up-to-date for restore.
+  Motus.Application -> E:\C#\Projects\Motus\SRC\Motus.Application\bin\Debug\net10.0\Motus.Application.dll
+  Motus.Infrastructure -> E:\C#\Projects\Motus\SRC\Motus.Infrastructure\bin\Debug\net10.0\Motus.Infrastructure.dll
+C:\Program Files\dotnet\sdk\10.0.101\Microsoft.Common.CurrentVersion.targets(2189,5): warning MSB9008: The referenced project ..\Motus.Common\Motus.Common.csproj does not exist. [E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj]
+  Motus.Api -> E:\C#\Projects\Motus\SRC\Motus.Api\bin\Debug\net10.0\Motus.Api.dll
+
+Build succeeded.
+
+C:\Program Files\dotnet\sdk\10.0.101\Microsoft.Common.CurrentVersion.targets(2189,5): warning MSB9008: The referenced project ..\Motus.Common\Motus.Common.csproj does not exist. [E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.68

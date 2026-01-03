@@ -1,0 +1,13 @@
+  Determining projects to restore...
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Contracts\Motus.Contracts.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Contracts\Motus.Contracts.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration.Binder will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+   C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\
+
+The given project `Motus.Api` has no vulnerable packages given the current sources.

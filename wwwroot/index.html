@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motus - City Transit</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Privacy Consent Modal -->
+    <div id="privacy-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Data Transparency</h2>
+            </div>
+            <div class="modal-content">
+                <p>We believe in full transparency. To improve city services and offer real-time traffic updates, Motus
+                    collects:</p>
+                <ul>
+                    <li><strong>Location Data:</strong> To show realtime ETAs and bus tracking.</li>
+                    <li><strong>Usage Stats:</strong> To optimize bus frequency during peak hours.</li>
+                </ul>
+                <p class="privacy-note">Your personal identity is never sold. Data is aggregated to improve the city's
+                    transport network.</p>
+            </div>
+            <div class="modal-actions">
+                <button id="accept-privacy" class="btn btn-primary">I Understand & Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">M</div>
+                <span class="logo-text">Motus</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-item active">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="#planner" class="nav-item">
+                    <span class="icon">🗺️</span> Route Planner
+                </a>
+                <a href="#wallet" class="nav-item">
+                    <span class="icon">💳</span> Digital Wallet
+                </a>
+                <a href="#settings" class="nav-item">
+                    <span class="icon">⚙️</span> Settings
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main View -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Good Morning, Traveler</h1>
+                    <p>Make the switch today. Save time, save the city.</p>
+                </div>
+                <div class="user-pill">
+                    <span class="avatar">JB</span>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+
+                <!-- Section: Comparison / Motivation -->
+                <section id="dashboard" class="section">
+                    <div class="hero-comparison">
+                        <div class="comparison-card transit">
+                            <div class="badge-best">RECOMMENDED</div>
+                            <h3>Public Transit</h3>
+                            <div class="stat-row">
+                                <span class="time">25 min</span>
+                                <span class="cost">$2.50</span>
+                            </div>
+                            <p class="impact">🌱 0.4kg CO2 Saved</p>
+                        </div>
+                        <div class="vs-divider">VS</div>
+                        <div class="comparison-card car">
+                            <h3>Personal Vehicle</h3>
+                            <div class="stat-row">
+                                <span class="time">42 min</span>
+                                <span class="cost">~$8.00</span>
+                            </div>
+                            <p class="impact">Traffic Delay: +15m</p>
+                        </div>
+                    </div>
+
+                    <div class="live-alerts">
+                        <h3>🔔 Live Transit Updates</h3>
+                        <div class="alert-item">
+                            <span class="line-tag line-blue">Line 42</span>
+                            <span>Running 2 mins late due to city event.</span>
+                        </div>
+                        <div class="alert-item">
+                            <span class="line-tag line-green">Line 12</span>
+                            <span>New express bus added for rush hour!</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Route Planner -->
+                <section id="planner" class="section">
+                    <div class="planner-card">
+                        <h2>Plan Your Journey</h2>
+                        <div class="route-inputs">
+                            <div class="input-group">
+                                <span class="dot start"></span>
+                                <input type="text" placeholder="Current Location" value="Downtown Metro">
+                            </div>
+                            <div class="line-connector"></div>
+                            <div class="input-group">
+                                <span class="dot end"></span>
+                                <input type="text" placeholder="Where to?">
+                            </div>
+                            <button class="btn btn-search">Find Route</button>
+                        </div>
+
+                        <!-- Mock Map Visualization -->
+                        <div class="map-placeholder">
+                            <div class="map-ui">
+                                <div class="route-line"></div>
+                                <div class="stop stop-1" data-time="10:05 AM"></div>
+                                <div class="stop stop-2" data-time="10:12 AM"></div>
+                                <div class="bus-icon">🚌</div>
+                            </div>
+                            <p class="map-caption">Interactive Map: Showing Line 12 Route</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Wallet -->
+                <section id="wallet" class="section">
+                    <h2>Digital Wallet</h2>
+                    <div class="wallet-container">
+                        <div class="digital-card">
+                            <div class="card-header">
+                                <span>Motus Pass</span>
+                                <span class="contactless-icon">)))</span>
+                            </div>
+                            <div class="card-balance">
+                                <span class="label">Balance</span>
+                                <span class="amount">$24.50</span>
+                            </div>
+                            <div class="card-footer">
+                                <span>J. Benson</span>
+                                <span>ID: 808-124-99</span>
+                            </div>
+                        </div>
+                        <div class="wallet-actions">
+                            <button class="btn btn-outline">Auto-Reload</button>
+                            <button class="btn btn-primary">Tap to Pay</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

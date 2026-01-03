@@ -1,0 +1,51 @@
+  Determining projects to restore...
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Contracts\Motus.Contracts.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Contracts\Motus.Contracts.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration.Binder will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1902: Package 'Microsoft.Identity.Abstractions' 7.1.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-rpq8-q44m-2rpg
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1902: Package 'Microsoft.Identity.Web' 3.3.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-rpq8-q44m-2rpg
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+   C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\
+
+Project `Motus.Api` has the following updates to its packages
+   [net10.0]: 
+   Top-level Package                                            Requested      Resolved       Latest                  
+   > Microsoft.AspNetCore.Authentication.JwtBearer              9.0.0          9.0.0          10.0.1                  
+   > Microsoft.AspNetCore.OpenApi                               9.0.0          9.0.0          10.0.1                  
+   > Microsoft.Extensions.Configuration.Binder                  9.0.0          9.0.0          10.0.1                  
+   > Microsoft.Identity.Web                                     3.3.0          3.3.0          4.2.0                   
+   > Microsoft.Identity.Web.DownstreamApi                       3.3.0          3.3.0          4.2.0                   
+   > Microsoft.VisualStudio.Azure.Containers.Tools.Targets      1.21.0         1.21.0         1.22.1                  
+   > OpenTelemetry.Exporter.Console                             1.9.0          1.9.0          1.14.0                  
+   > OpenTelemetry.Extensions.Hosting                           1.9.0          1.9.0          1.14.0                  
+   > OpenTelemetry.Instrumentation.AspNetCore                   1.9.0          1.9.0          1.14.0                  
+   > OpenTelemetry.Instrumentation.Http                         1.9.0          1.9.0          1.14.0                  
+   > OpenTelemetry.Instrumentation.SqlClient                    1.9.0-beta.1   1.9.0-beta.1   Not found at the sources
+   > Serilog.AspNetCore                                         8.0.3          8.0.3          10.0.0                  
+   > Serilog.Sinks.Console                                      6.0.0          6.0.0          6.1.1                   
+   > Swashbuckle.AspNetCore                                     7.2.0          7.2.0          10.1.0                  
+
+  Determining projects to restore...
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Contracts\Motus.Contracts.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Contracts\Motus.Contracts.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration.Binder will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1902: Package 'Microsoft.Identity.Abstractions' 7.1.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-rpq8-q44m-2rpg
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1902: Package 'Microsoft.Identity.Web' 3.3.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-rpq8-q44m-2rpg
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+   C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\
+
+Project `Motus.Api` has the following vulnerable packages
+   [net10.0]: 
+   Top-level Package             Requested   Resolved   Severity   Advisory URL                                     
+   > Microsoft.Identity.Web      3.3.0       3.3.0      Moderate   https://github.com/advisories/GHSA-rpq8-q44m-2rpg
+

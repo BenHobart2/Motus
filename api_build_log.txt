@@ -1,0 +1,22 @@
+  Determining projects to restore...
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Contracts\Motus.Contracts.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Contracts\Motus.Contracts.csproj" because it was not found.
+  Skipping project "E:\C#\Projects\Motus\SRC\Motus.Common\Motus.Common.csproj" because it was not found.
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration.Binder will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : error NU1605: Warning As Error: Detected package downgrade: Microsoft.Identity.Abstractions from 10.0.0 to 5.0.0. Reference the package directly from the project to select a different version. 
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : error NU1605:  Motus.Api -> Microsoft.Identity.Web 4.2.0 -> Microsoft.Identity.Web.Certificate 4.2.0 -> Microsoft.Identity.Abstractions (>= 10.0.0) 
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : error NU1605:  Motus.Api -> Microsoft.Identity.Abstractions (>= 5.0.0)
+  Failed to restore E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj (in 639 ms).
+  2 of 3 projects are up-to-date for restore.
+
+Build FAILED.
+
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration.Binder will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : error NU1605: Warning As Error: Detected package downgrade: Microsoft.Identity.Abstractions from 10.0.0 to 5.0.0. Reference the package directly from the project to select a different version. 
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : error NU1605:  Motus.Api -> Microsoft.Identity.Web 4.2.0 -> Microsoft.Identity.Web.Certificate 4.2.0 -> Microsoft.Identity.Abstractions (>= 10.0.0) 
+E:\C#\Projects\Motus\SRC\Motus.Api\Motus.Api.csproj : error NU1605:  Motus.Api -> Microsoft.Identity.Abstractions (>= 5.0.0)
+    1 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:02.02

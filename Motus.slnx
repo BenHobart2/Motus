@@ -1,0 +1,12 @@
+<Solution>
+  <Project Path="Motus.csproj" />
+  <Project Path="SRC/Motus.Api.Tests/Motus.Api.Tests.csproj" />
+  <Project Path="SRC/Motus.Api/Motus.Api.csproj" />
+  <Project Path="SRC/Motus.Application.Tests/Motus.Application.Tests.csproj" />
+  <Project Path="SRC/Motus.Application/Motus.Application.csproj" />
+  <Project Path="SRC/Motus.Domain.Tests/Motus.Domain.Tests.csproj" />
+  <Project Path="SRC/Motus.Domain/Motus.Domain.csproj" />
+  <Project Path="SRC/Motus.Infrastructure.Tests/Motus.Infrastructure.Tests.csproj" />
+  <Project Path="SRC/Motus.Infrastructure/Motus.Infrastructure.csproj" />
+  <Project Path="SRC/Motus.SharedKernel/Motus.SharedKernel.csproj" />
+</Solution>
