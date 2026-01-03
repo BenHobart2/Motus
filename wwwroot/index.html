@@ -49,18 +49,28 @@
                 <div class="logo-icon">M</div>
                 <span class="logo-text">Motus</span>
             </div>
+
+            <!-- Language Selector -->
+            <div class="lang-container">
+                <select id="lang-selector" class="lang-select">
+                    <option value="pt">🇧🇷 Português</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇺🇸 English</option>
+                </select>
+            </div>
+
             <div class="nav-menu">
                 <a href="#dashboard" class="nav-item active">
-                    <span class="icon">📊</span> Dashboard
+                    <span class="icon">📊</span> <span data-i18n="nav_dashboard">Dashboard</span>
                 </a>
                 <a href="#planner" class="nav-item">
-                    <span class="icon">🗺️</span> Route Planner
+                    <span class="icon">🗺️</span> <span data-i18n="nav_planner">Planejador</span>
                 </a>
                 <a href="#wallet" class="nav-item">
-                    <span class="icon">💳</span> Digital Wallet
+                    <span class="icon">💳</span> <span data-i18n="nav_wallet">Carteira</span>
                 </a>
                 <div class="favorites-section">
-                    <h4 class="nav-header">Favorites ❤️</h4>
+                    <h4 class="nav-header"><span data-i18n="nav_favorites">Favoritos</span> ❤️</h4>
                     <div id="favorites-list">
                         <!-- Fav items injected here -->
                     </div>
@@ -72,8 +82,8 @@
         <main class="main-content">
             <header class="top-bar">
                 <div class="welcome-text">
-                    <h1>Good Morning, Traveler</h1>
-                    <p>Current City: <strong>Curitiba, Brazil</strong></p>
+                    <h1 data-i18n="header_welcome">Bom dia, Viajante</h1>
+                    <p><span data-i18n="header_city">Cidade Atual:</span> <strong>Curitiba, Brazil</strong></p>
                 </div>
                 <div class="user-pill">
                     <span class="avatar">JB</span>
@@ -83,35 +93,17 @@
             <div class="content-wrapper">
 
                 <!-- Section: Dashboard & Map -->
+                <!-- Section: Dashboard & Map -->
                 <section id="dashboard" class="section">
-                    <div class="hero-comparison">
-                        <div class="comparison-card transit">
-                            <div class="badge-best">RECOMMENDED</div>
-                            <h3>Public Transit</h3>
-                            <div class="stat-row">
-                                <span class="time">25 min</span>
-                                <span class="cost">$2.50</span>
-                            </div>
-                            <p class="impact">🌱 0.4kg CO2 Saved</p>
-                        </div>
-                        <div class="vs-divider">VS</div>
-                        <div class="comparison-card car">
-                            <h3>Personal Vehicle</h3>
-                            <div class="stat-row">
-                                <span class="time">42 min</span>
-                                <span class="cost">~$8.00</span>
-                            </div>
-                            <p class="impact">Traffic Delay: +15m</p>
-                        </div>
-                    </div>
-
                     <!-- Real Map Container -->
                     <div class="map-container-wrapper">
-                        <h3>Live Traffic & Transit Network</h3>
+                        <h3 data-i18n="map_title">Tráfego e Rede de Transporte</h3>
                         <div id="map"></div>
                         <div class="map-legend">
-                            <div class="legend-item"><span class="dot green"></span> Bus Express (Flowing)</div>
-                            <div class="legend-item"><span class="dot red"></span> Live Traffic (Google Data)</div>
+                            <div class="legend-item"><span class="dot green"></span> <span data-i18n="legend_bus">Ônibus
+                                    Expresso (Fluindo)</span></div>
+                            <div class="legend-item"><span class="dot red"></span> <span
+                                    data-i18n="legend_traffic">Trânsito em Tempo Real</span></div>
                         </div>
                     </div>
                 </section>
@@ -119,36 +111,46 @@
                 <!-- Section: Route Planner -->
                 <section id="planner" class="section">
                     <div class="planner-card">
-                        <h2>Plan Your Journey</h2>
+                        <h2 data-i18n="planner_title">Planeje sua Jornada</h2>
 
                         <!-- Mode Toggles -->
                         <div class="mode-toggles">
-                            <button class="mode-btn active" data-mode="bus">🚌 Bus</button>
-                            <button class="mode-btn" data-mode="walk">🚶 Walk</button>
-                            <button class="mode-btn" data-mode="bike">🚲 Bike</button>
+                            <button class="mode-btn active" data-mode="bus">🚌 <span
+                                    data-i18n="mode_bus">Ônibus</span></button>
+                            <button class="mode-btn" data-mode="walk">🚶 <span data-i18n="mode_walk">A
+                                    pé</span></button>
+                            <button class="mode-btn" data-mode="bike">🚲 <span
+                                    data-i18n="mode_bike">Bike</span></button>
                         </div>
 
                         <div class="route-inputs">
                             <div class="input-group">
                                 <span class="dot start"></span>
-                                <input type="text" placeholder="Current Location" value="Praça Tiradentes">
+                                <input type="text" data-i18n-placeholder="input_from" placeholder="Localização Atual"
+                                    value="Praça Tiradentes">
                             </div>
                             <div class="line-connector"></div>
                             <div class="input-group">
                                 <span class="dot end"></span>
-                                <input type="text" placeholder="Where to?" value="Jardim Botânico">
+                                <input type="text" data-i18n-placeholder="input_to" placeholder="Para onde?"
+                                    value="Jardim Botânico">
                             </div>
-                            <button class="btn btn-search">Find Route</button>
+                            <button class="btn btn-search" data-i18n="btn_find">Buscar Rota</button>
                         </div>
 
                         <div id="route-results" class="route-results" style="display: none;">
                             <div class="result-header">
-                                <h3>Best Route</h3>
+                                <h3 data-i18n="result_best">Melhor Rota</h3>
                                 <button id="btn-save-fav" class="btn-icon" title="Save to Favorites">❤️</button>
                             </div>
                             <div class="result-details">
                                 <p id="result-text">Taking Line 12 Express...</p>
                                 <span id="result-eta" class="eta-tag">ETA: 10:45 AM</span>
+                            </div>
+
+                            <!-- Dynamic Comparison Widget -->
+                            <div id="dynamic-comparison" class="dynamic-comparison">
+                                <!-- Populated by JS, will need updates there -->
                             </div>
                         </div>
                     </div>
@@ -156,7 +158,7 @@
 
                 <!-- Section: Wallet -->
                 <section id="wallet" class="section">
-                    <h2>Digital Wallet</h2>
+                    <h2 data-i18n="wallet_title">Carteira Digital</h2>
                     <div class="wallet-container">
                         <div class="digital-card">
                             <div class="card-header">
@@ -164,8 +166,8 @@
                                 <span class="contactless-icon">)))</span>
                             </div>
                             <div class="card-balance">
-                                <span class="label">Balance</span>
-                                <span class="amount">$24.50</span>
+                                <span class="label" data-i18n="card_balance">Saldo</span>
+                                <span class="amount">R$ 24,50</span>
                             </div>
                             <div class="card-footer">
                                 <span>J. Benson</span>
@@ -173,8 +175,8 @@
                             </div>
                         </div>
                         <div class="wallet-actions">
-                            <button class="btn btn-outline">Auto-Reload</button>
-                            <button class="btn btn-primary">Tap to Pay</button>
+                            <button class="btn btn-outline" data-i18n="btn_reload">Recarregar</button>
+                            <button class="btn btn-primary" data-i18n="btn_tap">Pagar (Tap)</button>
                         </div>
                     </div>
                 </section>

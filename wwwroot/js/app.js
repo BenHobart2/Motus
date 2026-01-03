@@ -7,13 +7,143 @@ let map;
 let routeLayer;
 let trafficLayer;
 
+
+
+// --- Internationalization (i18n) ---
+const translations = {
+    pt: {
+        nav_dashboard: "Dashboard",
+        nav_planner: "Planejador",
+        nav_wallet: "Carteira",
+        nav_favorites: "Favoritos",
+        header_welcome: "Bom dia, Viajante",
+        header_city: "Cidade Atual:",
+        map_title: "Tráfego e Rede de Transporte",
+        legend_bus: "Ônibus Expresso (Fluindo)",
+        legend_traffic: "Trânsito em Tempo Real",
+        planner_title: "Planeje sua Jornada",
+        mode_bus: "Ônibus",
+        mode_walk: "A pé",
+        mode_bike: "Bike",
+        input_from: "Localização Atual",
+        input_to: "Para onde?",
+        btn_find: "Buscar Rota",
+        result_best: "Melhor Rota",
+        wallet_title: "Carteira Digital",
+        card_balance: "Saldo",
+        btn_reload: "Recarregar",
+        btn_tap: "Pagar (Tap)",
+
+        // Dynamic Logic Text
+        comp_title: "Por que mudar?",
+        comp_transit: "Ônibus",
+        comp_car: "Carro",
+        comp_traffic: "(+trânsito)",
+        comp_saved: "🎉 Você economizou",
+        comp_and: "e"
+    },
+    es: {
+        nav_dashboard: "Tablero",
+        nav_planner: "Planificador",
+        nav_wallet: "Billetera",
+        nav_favorites: "Favoritos",
+        header_welcome: "Buenos días, Viajero",
+        header_city: "Ciudad Actual:",
+        map_title: "Tráfico y Red de Transporte",
+        legend_bus: "Bus Expreso (Fluido)",
+        legend_traffic: "Tráfico en Tiempo Real",
+        planner_title: "Planifica tu Viaje",
+        mode_bus: "Bus",
+        mode_walk: "Caminar",
+        mode_bike: "Bici",
+        input_from: "Ubicación Actual",
+        input_to: "¿A dónde vas?",
+        btn_find: "Buscar Ruta",
+        result_best: "Mejor Ruta",
+        wallet_title: "Billetera Digital",
+        card_balance: "Saldo",
+        btn_reload: "Recargar",
+        btn_tap: "Pagar (Tap)",
+
+        // Dynamic Logic Text
+        comp_title: "¿Por qué cambiar?",
+        comp_transit: "Tránsito",
+        comp_car: "Coche",
+        comp_traffic: "(+tráfico)",
+        comp_saved: "🎉 Ahorraste",
+        comp_and: "y"
+    },
+    en: {
+        nav_dashboard: "Dashboard",
+        nav_planner: "Planner",
+        nav_wallet: "Wallet",
+        nav_favorites: "Favorites",
+        header_welcome: "Good Morning, Traveler",
+        header_city: "Current City:",
+        map_title: "Traffic & Transit Network",
+        legend_bus: "Bus Express (Flowing)",
+        legend_traffic: "Real-Time Traffic",
+        planner_title: "Plan Your Journey",
+        mode_bus: "Bus",
+        mode_walk: "Walk",
+        mode_bike: "Bike",
+        input_from: "Current Location",
+        input_to: "Where to?",
+        btn_find: "Find Route",
+        result_best: "Best Route",
+        wallet_title: "Digital Wallet",
+        card_balance: "Balance",
+        btn_reload: "Auto-Reload",
+        btn_tap: "Tap to Pay",
+
+        // Dynamic Logic Text
+        comp_title: "Why Switch?",
+        comp_transit: "Transit",
+        comp_car: "Car",
+        comp_traffic: "(+traffic)",
+        comp_saved: "🎉 You save",
+        comp_and: "and"
+    }
+};
+
+let currentLang = 'pt'; // Default to Portuguese
+
 document.addEventListener('DOMContentLoaded', () => {
     handlePrivacyModal();
     setupNavigation();
     setupMap();
     setupPlanner();
     loadFavorites();
+    setupLanguage(); // Init Language
 });
+
+function setupLanguage() {
+    const selector = document.getElementById('lang-selector');
+
+    // Set initial
+    changeLanguage('pt');
+
+    selector.addEventListener('change', (e) => {
+        changeLanguage(e.target.value);
+    });
+}
+
+function changeLanguage(lang) {
+    currentLang = lang;
+    const t = translations[lang];
+
+    // Update Text Content
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key]) el.innerText = t[key];
+    });
+
+    // Update Placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (t[key]) el.placeholder = t[key];
+    });
+}
 
 // --- Privacy ---
 function handlePrivacyModal() {
@@ -106,20 +236,34 @@ function setupPlanner() {
         const results = document.getElementById('route-results');
         const text = document.getElementById('result-text');
         const eta = document.getElementById('result-eta');
+        const compContainer = document.getElementById('dynamic-comparison'); // Container to update
 
         results.style.display = 'block';
+
+        // --- Dynamic Comparison Logic ---
+        let transitTime = 22; // Base (Mock)
+        let carTime = 45;     // Base (Mock)
+        let transitCost = 2.50;
+        let carCost = 9.50;
 
         if (currentMode === 'bus') {
             text.innerText = "Taking Line 303 (Centenário) -> Walk 5m";
             eta.innerText = "ETA: 22 min";
+            transitTime = 22;
         } else if (currentMode === 'bike') {
             text.innerText = "Dedicated Bike Lane available";
             eta.innerText = "ETA: 35 min";
+            transitTime = 35;
+            transitCost = 0; // Free
         } else {
             text.innerText = "Scenic route via parks";
             eta.innerText = "ETA: 1h 10m";
-            // Check if walking helps calories
+            transitTime = 70;
+            transitCost = 0;
         }
+
+        // Update Comparison UI
+        updateComparisonUI(transitTime, transitCost, carTime, carCost);
 
         // Auto-zoom to route
         map.fitBounds([start, end], { padding: [50, 50] });
@@ -130,6 +274,41 @@ function setupPlanner() {
         const mode = currentMode;
         saveFavorite(routeName, mode);
     });
+}
+
+function updateComparisonUI(tTime, tCost, cTime, cCost) {
+    const container = document.getElementById('dynamic-comparison');
+    if (!container) return;
+
+    // Calculate Savings
+    const savedMoney = (cCost - tCost).toFixed(2);
+    const savedTime = Math.max(0, cTime - tTime);
+
+    const t = translations[currentLang]; // Get current dictionary
+
+    // Update HTML content dynamically
+    container.innerHTML = `
+        <h4>${t.comp_title}</h4>
+        <div class="comp-grid">
+            <div class="comp-item transit">
+                <span class="label">${t.comp_transit}</span>
+                <div class="bar-container">
+                    <div class="bar" style="width: ${Math.min(100, (tTime / cTime) * 100)}%">${tTime}m</div>
+                </div>
+                <span class="cost">$${tCost.toFixed(2)}</span>
+            </div>
+            <div class="comp-item car">
+                <span class="label">${t.comp_car}</span>
+                <div class="bar-container">
+                    <div class="bar warning" style="width: 100%">${cTime}m ${t.comp_traffic}</div>
+                </div>
+                <span class="cost">~$${cCost.toFixed(2)}</span>
+            </div>
+        </div>
+        <div class="savings-alert">
+            ${t.comp_saved} <strong>$${savedMoney}</strong>${savedTime > 0 ? ` ${t.comp_and} <strong>${savedTime} min</strong>` : ''}!
+        </div>
+    `;
 }
 
 function drawRoute(start, end, mode) {

@@ -107,7 +107,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     font-weight: 700;
     font-size: 1.5rem;
     color: var(--primary-dark);
@@ -121,6 +121,22 @@ body {
     border-radius: 10px;
     display: grid;
     place-items: center;
+}
+
+/* Lang Selector */
+.lang-container {
+    margin-bottom: 24px;
+}
+
+.lang-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-sm);
+    background: var(--bg-app);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    cursor: pointer;
 }
 
 .nav-menu {
@@ -459,6 +475,87 @@ body {
     border-radius: 4px;
     font-weight: 700;
     font-size: 0.9rem;
+}
+
+/* Dynamic Comparison Widget */
+.dynamic-comparison {
+    margin-top: 16px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: var(--radius-md);
+    padding: 16px;
+}
+
+.dynamic-comparison h4 {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.comp-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.comp-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+}
+
+.comp-item .label {
+    width: 50px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.comp-item .cost {
+    width: 50px;
+    text-align: right;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.bar-container {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.05);
+    height: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: width 0.5s ease;
+}
+
+.comp-item.transit .bar {
+    background: var(--primary);
+}
+
+.comp-item.car .bar {
+    background: var(--danger);
+}
+
+.savings-alert {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--primary-dark);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #bbf7d0;
 }
 
 /* Wallet */
