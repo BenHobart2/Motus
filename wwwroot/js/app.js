@@ -30,9 +30,15 @@ const translations = {
         btn_find: "Buscar Rota",
         result_best: "Melhor Rota",
         wallet_title: "Carteira Digital",
+        result_best: "Melhor Rota",
+        wallet_title: "Carteira Digital",
         card_balance: "Saldo",
-        btn_reload: "Recarregar",
-        btn_tap: "Pagar (Tap)",
+        card_holder: "Nome do Titular",
+        add_funds: "Adicionar Fundos",
+        input_pix: "Chave Pix",
+        input_card: "Cartão de Crédito",
+        btn_save_payment: "Salvar Método",
+        error_payment_blocked: "Informações de pagamento não podem ser inseridas. Este ambiente não está conectado a um processador de pagamento.",
 
         // Dynamic Logic Text
         comp_title: "Por que mudar?",
@@ -76,9 +82,15 @@ const translations = {
         btn_find: "Buscar Ruta",
         result_best: "Mejor Ruta",
         wallet_title: "Billetera Digital",
+        result_best: "Mejor Ruta",
+        wallet_title: "Billetera Digital",
         card_balance: "Saldo",
-        btn_reload: "Recargar",
-        btn_tap: "Pagar (Tap)",
+        card_holder: "Titular",
+        add_funds: "Añadir Fondos",
+        input_pix: "Llave Pix",
+        input_card: "Tarjeta de Crédito",
+        btn_save_payment: "Guardar Método",
+        error_payment_blocked: "No se puede ingresar información de pago. Este entorno no está conectado a un procesador de pagos.",
 
         // Dynamic Logic Text
         comp_title: "¿Por qué cambiar?",
@@ -122,9 +134,15 @@ const translations = {
         btn_find: "Find Route",
         result_best: "Best Route",
         wallet_title: "Digital Wallet",
+        result_best: "Best Route",
+        wallet_title: "Digital Wallet",
         card_balance: "Balance",
-        btn_reload: "Auto-Reload",
-        btn_tap: "Tap to Pay",
+        card_holder: "Card Holder",
+        add_funds: "Add Funds",
+        input_pix: "Pix Key",
+        input_card: "Credit Card",
+        btn_save_payment: "Save Method",
+        error_payment_blocked: "Payment information cannot be entered. This environment is not connected to a payment processor.",
 
         // Dynamic Logic Text
         comp_title: "Why Switch?",
@@ -242,6 +260,26 @@ function setupMap() {
     });
 
     trafficLayer.addTo(map);
+
+    // --- Payment Logic ---
+    document.getElementById('btn-save-payment').addEventListener('click', () => {
+        const cardInput = document.getElementById('wallet-card').value;
+        const pixInput = document.getElementById('wallet-pix').value;
+
+        if (cardInput && cardInput.trim() !== "") {
+            // ERROR: Financial Info Blocked
+            alert(translations[currentLang].error_payment_blocked);
+            document.getElementById('wallet-card').value = ''; // Clear it for safety
+            return;
+        }
+
+        if (pixInput && pixInput.trim() !== "") {
+            // Pix is allowed (simulate save)
+            alert(`Pix Key '${pixInput}' saved temporarily.`);
+            // Update Wallet UI to mock funds
+            document.querySelector('.card-balance .amount').innerText = "R$ 50,00";
+        }
+    });
 
     // Transit Layer (BRT Corridors - Keeping these as they are specific to the Curitiba "Bus vs Car" story)
     const busLanes = [

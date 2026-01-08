@@ -218,16 +218,32 @@
                             </div>
                             <div class="card-balance">
                                 <span class="label" data-i18n="card_balance">Saldo</span>
-                                <span class="amount">R$ 24,50</span>
+                                <span class="amount">---</span>
                             </div>
                             <div class="card-footer">
-                                <span>J. Benson</span>
-                                <span>ID: 808-124-99</span>
+                                <span data-i18n="card_holder">Nome do Titular</span>
+                                <span>ID: ---</span>
                             </div>
                         </div>
-                        <div class="wallet-actions">
-                            <button class="btn btn-outline" data-i18n="btn_reload">Recarregar</button>
-                            <button class="btn btn-primary" data-i18n="btn_tap">Pagar (Tap)</button>
+
+                        <!-- Payment Inputs -->
+                        <div class="payment-forms" style="margin-top: 2rem; width: 100%; max-width: 350px;">
+                            <h3 data-i18n="add_funds">Adicionar Fundos</h3>
+
+                            <!-- Pix -->
+                            <div class="input-group-vertical">
+                                <label data-i18n="input_pix">Chave Pix</label>
+                                <input type="text" id="wallet-pix" placeholder="CPF/Email/Phone">
+                            </div>
+
+                            <!-- Restrict Financial Info -->
+                            <div class="input-group-vertical">
+                                <label data-i18n="input_card">Cartão de Crédito</label>
+                                <input type="text" id="wallet-card" placeholder="0000 0000 0000 0000">
+                            </div>
+
+                            <button id="btn-save-payment" class="btn btn-primary" style="width: 100%;"
+                                data-i18n="btn_save_payment">Salvar Método</button>
                         </div>
                     </div>
                 </section>
