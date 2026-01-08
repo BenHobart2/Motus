@@ -40,7 +40,22 @@ const translations = {
         comp_car: "Carro",
         comp_traffic: "(+trânsito)",
         comp_saved: "🎉 Você economizou",
-        comp_and: "e"
+        comp_and: "e",
+        comp_source: "Fonte: Prefeitura de Curitiba (2022)",
+
+        // Auth
+        auth_login_title: "Login",
+        auth_email: "Email",
+        auth_password: "Senha",
+        auth_toggle_register: "Criar conta",
+        auth_toggle_login: "Já tem conta? Entrar",
+        btn_login: "Entrar",
+
+        reg_title: "Crie sua Conta",
+        reg_name: "Nome Completo",
+        reg_home: "Endereço Residencial (Opcional)",
+        reg_work: "Endereço Comercial (Opcional)",
+        btn_register: "Registrar"
     },
     es: {
         nav_dashboard: "Tablero",
@@ -71,7 +86,22 @@ const translations = {
         comp_car: "Coche",
         comp_traffic: "(+tráfico)",
         comp_saved: "🎉 Ahorraste",
-        comp_and: "y"
+        comp_and: "y",
+        comp_source: "Fuente: Ayuntamiento de Curitiba (2022)",
+
+        // Auth
+        auth_login_title: "Iniciar Sesión",
+        auth_email: "Correo Electrónico",
+        auth_password: "Contraseña",
+        auth_toggle_register: "Crear Cuenta",
+        auth_toggle_login: "¿Ya tienes cuenta? Entrar",
+        btn_login: "Entrar",
+
+        reg_title: "Crea tu Cuenta",
+        reg_name: "Nombre Completo",
+        reg_home: "Dirección Residencial (Opcional)",
+        reg_work: "Dirección Comercial (Opcional)",
+        btn_register: "Registrar"
     },
     en: {
         nav_dashboard: "Dashboard",
@@ -102,7 +132,22 @@ const translations = {
         comp_car: "Car",
         comp_traffic: "(+traffic)",
         comp_saved: "🎉 You save",
-        comp_and: "and"
+        comp_and: "and",
+        comp_source: "Source: Curitiba City Hall (2022)",
+
+        // Auth
+        auth_login_title: "Login",
+        auth_email: "Email",
+        auth_password: "Password",
+        auth_toggle_register: "Create Account",
+        auth_toggle_login: "Have an account? Login",
+        btn_login: "Login",
+
+        reg_title: "Create Account",
+        reg_name: "Full Name",
+        reg_home: "Home Address (Optional)",
+        reg_work: "Work Address (Optional)",
+        btn_register: "Register"
     }
 };
 
@@ -288,25 +333,28 @@ function updateComparisonUI(tTime, tCost, cTime, cCost) {
 
     // Update HTML content dynamically
     container.innerHTML = `
-        <h4>${t.comp_title}</h4>
+        <h4 data-i18n="comp_title">${t.comp_title}</h4>
         <div class="comp-grid">
             <div class="comp-item transit">
-                <span class="label">${t.comp_transit}</span>
+                <span class="label" data-i18n="comp_transit">${t.comp_transit}</span>
                 <div class="bar-container">
                     <div class="bar" style="width: ${Math.min(100, (tTime / cTime) * 100)}%">${tTime}m</div>
                 </div>
-                <span class="cost">$${tCost.toFixed(2)}</span>
+                <span class="cost">R$ ${tCost.toFixed(2).replace('.', ',')}</span>
             </div>
             <div class="comp-item car">
-                <span class="label">${t.comp_car}</span>
+                <span class="label" data-i18n="comp_car">${t.comp_car}</span>
                 <div class="bar-container">
                     <div class="bar warning" style="width: 100%">${cTime}m ${t.comp_traffic}</div>
                 </div>
-                <span class="cost">~$${cCost.toFixed(2)}</span>
+                <span class="cost">~R$ ${cCost.toFixed(2).replace('.', ',')}</span>
             </div>
         </div>
         <div class="savings-alert">
-            ${t.comp_saved} <strong>$${savedMoney}</strong>${savedTime > 0 ? ` ${t.comp_and} <strong>${savedTime} min</strong>` : ''}!
+            <span data-i18n="comp_saved">${t.comp_saved}</span> <strong>R$ ${savedMoney.replace('.', ',')}</strong>${savedTime > 0 ? ` <span data-i18n="comp_and">${t.comp_and}</span> <strong>${savedTime} min</strong>` : ''}!
+        </div>
+        <div class="source-link">
+            <a href="https://www.curitiba.pr.gov.br/noticias/ir-ao-trabalho-de-carro-custa-o-dobro-do-que-usar-o-transporte-coletivo/63897" target="_blank" data-i18n="comp_source">${t.comp_source}</a>
         </div>
     `;
 }
@@ -384,4 +432,121 @@ function getModeIcon(mode) {
     if (mode === 'walk') return '🚶';
     if (mode === 'bike') return '🚲';
     return '🚌';
+}
+
+// --- Auth Logic ---
+let isLoginMode = true;
+
+document.querySelector('.user-pill').addEventListener('click', () => {
+    document.getElementById('auth-modal').style.display = 'flex';
+    resetAuthForm();
+});
+
+document.querySelectorAll('.close-modal').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.target.closest('.modal-overlay').style.display = 'none';
+    });
+});
+
+document.getElementById('toggle-auth').addEventListener('click', (e) => {
+    e.preventDefault();
+    isLoginMode = !isLoginMode;
+    updateAuthUI();
+});
+
+function resetAuthForm() {
+    isLoginMode = true;
+    updateAuthUI();
+    document.getElementById('auth-form').reset();
+}
+
+function updateAuthUI() {
+    const title = document.getElementById('auth-title');
+    const regFields = document.getElementById('register-fields');
+    const toggleBtn = document.getElementById('toggle-auth');
+    const submitBtn = document.getElementById('btn-auth-submit');
+
+    // Get translations for current lang
+    const t = translations[currentLang];
+
+    if (isLoginMode) {
+        title.innerText = t.auth_login_title;
+        regFields.style.display = 'none';
+        submitBtn.innerText = t.btn_login;
+        toggleBtn.innerText = t.auth_toggle_register;
+    } else {
+        title.innerText = t.reg_title;
+        regFields.style.display = 'block';
+        submitBtn.innerText = t.btn_register;
+        toggleBtn.innerText = t.auth_toggle_login;
+    }
+}
+
+document.getElementById('auth-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('auth-email').value;
+    const password = document.getElementById('auth-password').value;
+
+    if (isLoginMode) {
+        // LOGIN
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                handleLoginSuccess(data.user);
+            } else {
+                alert('Login failed. Check credentials.');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Login error');
+        }
+    } else {
+        // REGISTER
+        const name = document.getElementById('reg-name').value;
+        const homeAddress = document.getElementById('reg-home').value;
+        const workAddress = document.getElementById('reg-work').value;
+
+        try {
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password, homeAddress, workAddress })
+            });
+
+            if (response.ok) {
+                alert('Account created! Please login.');
+                isLoginMode = true;
+                updateAuthUI();
+            } else {
+                alert('Registration failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Registration error');
+        }
+    }
+});
+
+function handleLoginSuccess(user) {
+    document.getElementById('auth-modal').style.display = 'none';
+
+    // Update UI
+    document.querySelector('.welcome-text h1').innerText = `Hello, ${user.name.split(' ')[0]}`;
+    document.querySelector('.user-pill .avatar').innerText = user.name.substring(0, 2).toUpperCase();
+
+    // Persist (simple)
+    localStorage.setItem('motus_user', JSON.stringify(user));
+}
+
+// Check session on load
+const savedUser = localStorage.getItem('motus_user');
+if (savedUser) {
+    handleLoginSuccess(JSON.parse(savedUser));
 }

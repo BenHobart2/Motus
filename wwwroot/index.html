@@ -42,6 +42,57 @@
         </div>
     </div>
 
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="auth-title" data-i18n="auth_login_title">Login</h2>
+                <button class="btn-icon close-modal" style="margin-left: auto;">×</button>
+            </div>
+            <div class="modal-content">
+                <form id="auth-form">
+                    <!-- Login Fields -->
+                    <div id="login-fields">
+                        <div class="input-group-vertical">
+                            <label data-i18n="auth_email">Email</label>
+                            <input type="email" id="auth-email" required placeholder="john@example.com">
+                        </div>
+                        <div class="input-group-vertical">
+                            <label data-i18n="auth_password">Senha</label>
+                            <input type="password" id="auth-password" required placeholder="********">
+                        </div>
+                    </div>
+
+                    <!-- Register Extra Fields -->
+                    <div id="register-fields" style="display: none;">
+                        <div class="input-group-vertical">
+                            <label data-i18n="reg_name">Nome Completo</label>
+                            <input type="text" id="reg-name" placeholder="John Doe">
+                        </div>
+                        <!-- Email/Pass reused -->
+                        <div class="input-group-vertical">
+                            <label data-i18n="reg_home">Endereço Residencial (Opcional)</label>
+                            <input type="text" id="reg-home" placeholder="Rua XV de Novembro, 100">
+                        </div>
+                        <div class="input-group-vertical">
+                            <label data-i18n="reg_work">Endereço Comercial (Opcional)</label>
+                            <input type="text" id="reg-work" placeholder="Centro Cívico">
+                        </div>
+                    </div>
+
+                    <div class="modal-actions"
+                        style="justify-content: space-between; display: flex; align-items: center;">
+                        <a href="#" id="toggle-auth"
+                            style="font-size: 0.9rem; color: var(--accent); text-decoration: none;"
+                            data-i18n="auth_toggle_register">Criar conta</a>
+                        <button type="submit" class="btn btn-primary" id="btn-auth-submit"
+                            data-i18n="btn_login">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="app-container">
         <!-- Navigation -->
         <nav class="sidebar">
