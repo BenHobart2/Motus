@@ -367,6 +367,11 @@ function updateComparisonUI(tTime, tCost, cTime, cCost) {
     const savedMoney = (cCost - tCost).toFixed(2);
     const savedTime = Math.max(0, cTime - tTime);
 
+    // Normalize Scale (Relative to the longest time)
+    const maxTime = Math.max(tTime, cTime);
+    const tWidth = (tTime / maxTime) * 100;
+    const cWidth = (cTime / maxTime) * 100;
+
     const t = translations[currentLang]; // Get current dictionary
 
     // Update HTML content dynamically
@@ -376,23 +381,20 @@ function updateComparisonUI(tTime, tCost, cTime, cCost) {
             <div class="comp-item transit">
                 <span class="label" data-i18n="comp_transit">${t.comp_transit}</span>
                 <div class="bar-container">
-                    <div class="bar" style="width: ${Math.min(100, (tTime / cTime) * 100)}%">${tTime}m</div>
+                    <div class="bar" style="width: ${tWidth}%">${tTime}m</div>
                 </div>
                 <span class="cost">R$ ${tCost.toFixed(2).replace('.', ',')}</span>
             </div>
             <div class="comp-item car">
                 <span class="label" data-i18n="comp_car">${t.comp_car}</span>
                 <div class="bar-container">
-                    <div class="bar warning" style="width: 100%">${cTime}m ${t.comp_traffic}</div>
+                    <div class="bar warning" style="width: ${cWidth}%">${cTime}m ${t.comp_traffic}</div>
                 </div>
                 <span class="cost">~R$ ${cCost.toFixed(2).replace('.', ',')}</span>
             </div>
         </div>
         <div class="savings-alert">
             <span data-i18n="comp_saved">${t.comp_saved}</span> <strong>R$ ${savedMoney.replace('.', ',')}</strong>${savedTime > 0 ? ` <span data-i18n="comp_and">${t.comp_and}</span> <strong>${savedTime} min</strong>` : ''}!
-        </div>
-        <div class="source-link">
-            <a href="https://www.curitiba.pr.gov.br/noticias/ir-ao-trabalho-de-carro-custa-o-dobro-do-que-usar-o-transporte-coletivo/63897" target="_blank" data-i18n="comp_source">${t.comp_source}</a>
         </div>
     `;
 }
